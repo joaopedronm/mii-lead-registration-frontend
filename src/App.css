@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #f9fbfc;
+}
+
+.image-section {
+  width: 40%;
+  background: url("./assets/img/bg.png") center/cover no-repeat;
+  color: white;
+  padding: 40px 80px 50px 80px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: 0px 8px 8px 0px;
+}
+
+.content-container h1 {
+  margin-bottom: 1rem;
+  line-height: 2.5rem;
+  font-weight: 600;
+}
+
+.form-section {
+  width: 50%;
+  margin: 60px auto;
+  padding-left: 6%;
+  padding-right: 6%;
+  overflow-y: auto;
+}
+
+.form-section h2 {
+  text-align: center;
+}
+
+.form-section p {
+  font-size: 1rem;
+  text-align: center;
+  color: #858585;
+}
+
+.main-form {
+  margin-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.testimonial {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  margin-top: 38px;
+}
+
+.testimonial .phrase {
+  font-weight: 300;
+  font-style: italic;
+  font-size: .8rem;
+}
+
+.testimonial-info {
+  display: flex;
+  margin-top: 20px;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.role {
+  font-size: .8rem;
+}
+
+@media (max-width: 1000px) {
+  .form-section {
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 36px auto;
+  }
+
+  .image-section {
+    display: none;
+  }
+}
