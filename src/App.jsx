@@ -1,16 +1,28 @@
+import './App.css';
 import React, { useState } from 'react';
 import CategorySelector from './components/CategorySelector';
 import PousadasForm from './components/PousadasForm';
 import RestaurantsForm from './components/RestaurantsForm';
 import GroupHousesForm from './components/GroupHousesForm';
-import './App.css';
+import BarsForm from './components/BarsForms';
+import PizzariasForm from './components/PizzariasForm';
+import EspetinhosForm from './components/Espetinhos';
+import AcaiForm from './components/AcaiForm';
+import DeliverysForm from './components/DeliverysForm';
+import KiteSchoolsForm from './components/KiteSchoolsForm';
+import GymsForm from './components/GymsForm';
+import SportsArenaForm from './components/SportsArenaForm';
+import PersonalTrainerForm from './components/PersonalTrainerForm';
+import PharmacyForm from './components/PharmacyForm';
+import ClinicasForm from './components/ClinicasForm';
+import MassagemForm from './components/MassagemForm';
+import { AiOutlineWhatsApp } from "react-icons/ai";
 
 const ConfirmationMessage = ({ setSubmitted, setCategoria }) => (
     <div className="confirmation">
         <h2>Formulário enviado com sucesso! ✅</h2>
-        <p>Seu estabelecimento foi cadastrado e <b>estará no aplicativo do Made in Itarema em até 24 horas</b>.
-            Você já pode fechar esta página.</p>
-        <p>Caso deseje cadastrar um novo estabelecimento, clique no botão abaixo:</p>
+        <p>Seu estabelecimento foi cadastrado e <b>estará no aplicativo do Made in Itarema em até 24 horas</b>. Entraremos em contato para solicitar a última etapa do cadastro, as fotos.</p>
+        <p>Caso deseje cadastrar um novo estabelecimento, clique no botão abaixo.</p>
 
         <button
             onClick={() => {
@@ -20,14 +32,24 @@ const ConfirmationMessage = ({ setSubmitted, setCategoria }) => (
         >
             Cadastrar um novo estabelecimento
         </button>
+
+        <div className='contact'>
+            <AiOutlineWhatsApp className='icon' />
+            <p>Contato para dúvidas: (88) 98824 - 2039</p>
+        </div>
     </div>
 );
 
-const ErrorMessage = ({ errorMessage, setError }) => (
+const ErrorMessage = ({ errorMessage, setError, setCategoria }) => (
     <div className="error-message">
         <h2>Ocorreu um erro ❌</h2>
         <p>{errorMessage}</p>
-        <button onClick={() => setError(null)}>Tentar novamente</button>
+        <button onClick={() => {
+            setError(null)
+            setCategoria('')
+        }}>
+            Tentar novamente
+        </button>
     </div>
 );
 
@@ -71,6 +93,30 @@ const App = () => {
                 return <RestaurantsForm onSubmit={handleSubmit} />;
             case 'casasGrupo':
                 return <GroupHousesForm onSubmit={handleSubmit} />;
+            case 'bares':
+                return <BarsForm onSubmit={handleSubmit} />;
+            case 'pizzarias':
+                return <PizzariasForm onSubmit={handleSubmit} />;
+            case 'espetinhos':
+                return <EspetinhosForm onSubmit={handleSubmit} />;
+            case 'acais':
+                return <AcaiForm onSubmit={handleSubmit} />;
+            case 'deliverys':
+                return <DeliverysForm onSubmit={handleSubmit} />;
+            case 'kiteSchools':
+                return <KiteSchoolsForm onSubmit={handleSubmit} />;
+            case 'academias':
+                return <GymsForm onSubmit={handleSubmit} />;
+            case 'arenas':
+                return <SportsArenaForm onSubmit={handleSubmit} />;
+            case 'personal':
+                return <PersonalTrainerForm onSubmit={handleSubmit} />;
+            case 'farmacias':
+                return <PharmacyForm onSubmit={handleSubmit} />;
+            case 'clinicas':
+                return <ClinicasForm onSubmit={handleSubmit} />;
+            case 'massagem':
+                return <MassagemForm onSubmit={handleSubmit} />;
             default:
                 return null;
         }
@@ -111,7 +157,7 @@ const App = () => {
                 {submitted ? (
                     <ConfirmationMessage setSubmitted={setSubmitted} setCategoria={setCategoria} />
                 ) : error ? (
-                    <ErrorMessage errorMessage={error} setError={setError} />
+                    <ErrorMessage errorMessage={error} setError={setError} setCategoria={setCategoria} />
                 ) : (
                     <>
                         <h2>Saudações do Made in Itarema App! 📱</h2>
