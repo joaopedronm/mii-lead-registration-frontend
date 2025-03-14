@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
-const RestaurantsForm = ({ onSubmit }) => {
+const GroupHousesForm = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
         nome: '',
         descricao: '',
-        tipoDeCulinaria: '',
-        especialidadesDaCasa: '',
-        horarioDeFuncionamento: '',
-        entregas: '',
+        amenities: '',
+        capacidade: '',
+        atividades: '',
         endereco: '',
         whatsapp: '',
         instagram: '',
         link: ''
+
     });
 
     // Função para atualizar os campos do formulário
@@ -23,16 +23,15 @@ const RestaurantsForm = ({ onSubmit }) => {
     // Função para enviar os dados do formulário
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Envia os dados para o onSubmit, incluindo a categoria como "restaurantes"
-        onSubmit({ ...formData, categoria: 'restaurantes' });
+        // Envia os dados para o onSubmit, incluindo a categoria como "casasGrupo"
+        onSubmit({ ...formData, categoria: 'casasGrupo' });
 
         setFormData({
             nome: '',
             descricao: '',
-            tipoDeCulinaria: '',
-            especialidadesDaCasa: '',
-            horarioDeFuncionamento: '',
-            entregas: '',
+            amenities: '',
+            capacidade: '',
+            atividades: '',
             endereco: '',
             whatsapp: '',
             instagram: '',
@@ -43,7 +42,7 @@ const RestaurantsForm = ({ onSubmit }) => {
     return (
         <form onSubmit={handleSubmit}>
             <label>
-                Nome do Restaurante
+                Nome do local
                 <input
                     type="text"
                     name="nome"
@@ -55,6 +54,7 @@ const RestaurantsForm = ({ onSubmit }) => {
             <label>
                 Descrição
                 <textarea
+                    type="text"
                     name="descricao"
                     value={formData.descricao}
                     onChange={handleChange}
@@ -63,42 +63,33 @@ const RestaurantsForm = ({ onSubmit }) => {
                 />
             </label>
             <label>
-                Tipo de culinária
+                Facilidades do local
                 <textarea
-                    name="tipoDeCulinaria"
-                    value={formData.tipoDeCulinaria}
+                    name="amenities"
+                    value={formData.amenities}
                     onChange={handleChange}
-                    placeholder='Frutos do mar, culinária japonesa, vegetariano, etc.'
+                    placeholder='Wi-Fi gratuito, estacionamento, piscina, Tv a cabo, etc.'
                     required
                 />
             </label>
             <label>
-                Especialidades da Casa
-                <textarea
-                    name="especialidadesDaCasa"
-                    value={formData.especialidadesDaCasa}
-                    onChange={handleChange}
-                    placeholder='Descreva os principais pratos do seu restaurante.'
-                    required
-                />
-            </label>
-            <label>
-                Horário de Funcionamento
-                <textarea
-                    name="horarioDeFuncionamento"
-                    value={formData.horarioDeFuncionamento}
-                    onChange={handleChange}
-                    placeholder='Liste os horários de funcionamento de Seg. a Dom. Ex: Segunda-Feira: 08:00 às 15:00.'
-                    required
-                />
-            </label>
-            <label>
-                Realiza entregas?
+                Capacidade
                 <input
                     type="text"
-                    name="entregas"
-                    value={formData.entregas}
+                    name="capacidade"
+                    value={formData.capacidade}
                     onChange={handleChange}
+                    placeholder='Número máximo de pessoas que o local hospeda.'
+                    required
+                />
+            </label>
+            <label>
+                Atividades oferecidas pelo local
+                <textarea
+                    name="atividades"
+                    value={formData.atividades}
+                    onChange={handleChange}
+                    placeholder='Ex: passeios de barco, aulas de jetski, stand-up etc. Caso tenha.'
                     required
                 />
             </label>
@@ -149,4 +140,4 @@ const RestaurantsForm = ({ onSubmit }) => {
     );
 };
 
-export default RestaurantsForm;
+export default GroupHousesForm;

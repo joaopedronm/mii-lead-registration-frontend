@@ -4,6 +4,7 @@ const CategoriaSelector = ({ onSelectCategoria }) => {
     const categorias = [
         { id: 'pousadas', nome: 'Pousadas' },
         { id: 'restaurantes', nome: 'Restaurantes' },
+        { id: 'casasGrupo', nome: 'Casas para Grupos / Casas de Praia' },
         { id: 'outros', nome: 'Outros' },
     ];
 

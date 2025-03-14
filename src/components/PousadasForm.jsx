@@ -10,6 +10,7 @@ const PousadasForm = ({ onSubmit }) => {
         tiposDeQuartos: '',
         atividades: '',
         endereco: '',
+        whatsapp: '',
         instagram: '',
         link: ''
 
@@ -26,6 +27,20 @@ const PousadasForm = ({ onSubmit }) => {
         e.preventDefault();
         // Envia os dados para o onSubmit, incluindo a categoria como "pousadas"
         onSubmit({ ...formData, categoria: 'pousadas' });
+
+        setFormData({
+            nome: '',
+            descricao: '',
+            amenities: '',
+            quartos: '',
+            diaria: '',
+            tiposDeQuartos: '',
+            atividades: '',
+            endereco: '',
+            whatsapp: '',
+            instagram: '',
+            link: ''
+        });
     };
 
     return (
@@ -44,7 +59,7 @@ const PousadasForm = ({ onSubmit }) => {
                 Descrição
                 <textarea
                     type="text"
-                    name="description"
+                    name="descricao"
                     value={formData.descricao}
                     onChange={handleChange}
                     placeholder='Faça uma breve apresentação'
@@ -75,7 +90,7 @@ const PousadasForm = ({ onSubmit }) => {
                 Qual o menor valor da diária na sua Pousada?
                 <input
                     type="text"
-                    name="daily"
+                    name="diaria"
                     value={formData.diaria}
                     onChange={handleChange}
                     required
@@ -115,8 +130,8 @@ const PousadasForm = ({ onSubmit }) => {
                 Número do WhatsApp (com DDD)
                 <input
                     type="text"
-                    name="endereco"
-                    value={formData.endereco}
+                    name="whatsapp"
+                    value={formData.whatsapp}
                     onChange={handleChange}
                     placeholder='(88) 98888-8888'
                     required

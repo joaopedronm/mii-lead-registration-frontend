@@ -1,14 +1,45 @@
-// src/App.jsx
 import React, { useState } from 'react';
 import CategorySelector from './components/CategorySelector';
 import PousadasForm from './components/PousadasForm';
 import RestaurantsForm from './components/RestaurantsForm';
+import GroupHousesForm from './components/GroupHousesForm';
 import './App.css';
+
+const ConfirmationMessage = ({ setSubmitted, setCategoria }) => (
+    <div className="confirmation">
+        <h2>Formulário enviado com sucesso! ✅</h2>
+        <p>Seu estabelecimento foi cadastrado e <b>estará no aplicativo do Made in Itarema em até 24 horas</b>.
+            Você já pode fechar esta página.</p>
+        <p>Caso deseje cadastrar um novo estabelecimento, clique no botão abaixo:</p>
+
+        <button
+            onClick={() => {
+                setSubmitted(false);
+                setCategoria('');
+            }}
+        >
+            Cadastrar um novo estabelecimento
+        </button>
+    </div>
+);
+
+const ErrorMessage = ({ errorMessage, setError }) => (
+    <div className="error-message">
+        <h2>Ocorreu um erro ❌</h2>
+        <p>{errorMessage}</p>
+        <button onClick={() => setError(null)}>Tentar novamente</button>
+    </div>
+);
 
 const App = () => {
     const [categoria, setCategoria] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleSubmit = async (dados) => {
+        setLoading(true);
+        setError(null);
         try {
             const response = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/send-form`, {
                 method: 'POST',
@@ -17,12 +48,18 @@ const App = () => {
                 },
                 body: JSON.stringify(dados),
             });
-            const result = await response.json();
-            console.log('Sucesso:', result);
-            alert('Formulário enviado com sucesso!');
+
+            if (!response.ok) {
+                throw new Error('Ocorreu um erro ao enviar o formulário. Tente novamente.');
+            }
+
+            await response.json();
+            setSubmitted(true);
         } catch (error) {
             console.error('Erro:', error);
-            alert('Erro ao enviar o formulário.');
+            setError(error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -32,6 +69,8 @@ const App = () => {
                 return <PousadasForm onSubmit={handleSubmit} />;
             case 'restaurantes':
                 return <RestaurantsForm onSubmit={handleSubmit} />;
+            case 'casasGrupo':
+                return <GroupHousesForm onSubmit={handleSubmit} />;
             default:
                 return null;
         }
@@ -47,9 +86,9 @@ const App = () => {
                     <div className="content-container">
                         <h1>Alcance mais clientes com o Made in Itarema App!</h1>
                         <p>
-                        Nossa cidade recebe milhares de visitantes todos os anos, e seu negócio pode se destacar!
-                        Cadastre-se para divulgar seus serviços, produtos, eventos e promoções para
-                        moradores e turistas em um só lugar.
+                            Nossa cidade recebe milhares de visitantes todos os anos, e seu negócio pode se destacar!
+                            Cadastre-se para divulgar seus serviços, produtos, eventos e promoções para
+                            moradores e turistas em um só lugar.
                         </p>
                     </div>
 
@@ -65,44 +104,26 @@ const App = () => {
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
 
             <div className="form-section">
-                <h2>Saudações do Made in Itarema App! 📱</h2>
-                <p>Preencha o formulário para cadastrar seu estabelecimento no maior aplicativo da região.</p>
-
-                <div className='main-form'>
-                    <CategorySelector onSelectCategoria={setCategoria} />
-                    {renderForm()}
-                </div>
-
-                {/* <form>
-                    <label>Email</label>
-                    <input type="email" placeholder="m@example.com" />
-        
-                    <label>First Name</label>
-                    <input type="text" placeholder="John" />
-        
-                    <label>Last Name</label>
-                    <input type="text" placeholder="Doe" />
-        
-                    <label>Company</label>
-                    <input type="text" placeholder="Terra Capital" />
-        
-                    <label>Title</label>
-                    <input type="text" placeholder="Managing Partner" disabled />
-        
-                    <div className="checkbox">
-                    <input type="checkbox" id="terms" />
-                    <label htmlFor="terms">I accept the terms and conditions</label>
-                    </div>
-        
-                    <button type="submit">Sign In</button>
-                </form> */}
+                {submitted ? (
+                    <ConfirmationMessage setSubmitted={setSubmitted} setCategoria={setCategoria} />
+                ) : error ? (
+                    <ErrorMessage errorMessage={error} setError={setError} />
+                ) : (
+                    <>
+                        <h2>Saudações do Made in Itarema App! 📱</h2>
+                        <p>Preencha o formulário para cadastrar seu estabelecimento no maior aplicativo da região.</p>
+                        <div className='main-form'>
+                            <CategorySelector onSelectCategoria={setCategoria} />
+                            {loading ? <p>Enviando...</p> : renderForm()}
+                        </div>
+                    </>
+                )}
             </div>
-      </div>
+        </div>
     );
 };
 
