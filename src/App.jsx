@@ -17,6 +17,7 @@ import PharmacyForm from './components/PharmacyForm';
 import ClinicasForm from './components/ClinicasForm';
 import MassagemForm from './components/MassagemForm';
 import { AiOutlineWhatsApp } from "react-icons/ai";
+import LoadingMessage from './components/LoadingMessage';
 
 const ConfirmationMessage = ({ setSubmitted, setCategoria }) => (
     <div className="confirmation">
@@ -164,7 +165,7 @@ const App = () => {
                         <p>Preencha o formulário para cadastrar seu estabelecimento no maior aplicativo da região.</p>
                         <div className='main-form'>
                             <CategorySelector onSelectCategoria={setCategoria} />
-                            {loading ? <p>Enviando...</p> : renderForm()}
+                            {loading ? <LoadingMessage /> : renderForm()}
                         </div>
                     </>
                 )}
