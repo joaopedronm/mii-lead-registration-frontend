@@ -19,7 +19,14 @@ import MassagemForm from './components/MassagemForm';
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import LoadingMessage from './components/LoadingMessage';
 
+import { ImAndroid } from "react-icons/im";
+import { ImAppleinc } from "react-icons/im";
+import { WiDayHaze } from "react-icons/wi";
+import { ImCart } from "react-icons/im";
+
 import logoImage from "./assets/img/logo-mii.png"
+import logoMobile from "./assets/img/logo-mii-black.png"
+import bgMobile from "./assets/img/bg-mobile.png"
 import userImage from "./assets/img/jp.png"
 
 const ConfirmationMessage = ({ setSubmitted, setCategoria }) => (
@@ -158,20 +165,33 @@ const App = () => {
             </div>
 
             <div className="form-section">
-                {submitted ? (
-                    <ConfirmationMessage setSubmitted={setSubmitted} setCategoria={setCategoria} />
-                ) : error ? (
-                    <ErrorMessage errorMessage={error} setError={setError} setCategoria={setCategoria} />
-                ) : (
-                    <>
-                        <h2>Saudações do Made in Itarema App! 📱</h2>
-                        <p>Preencha o formulário para cadastrar seu estabelecimento no maior aplicativo da região.</p>
-                        <div className='main-form'>
-                            <CategorySelector onSelectCategoria={setCategoria} />
-                            {loading ? <LoadingMessage /> : renderForm()}
-                        </div>
-                    </>
-                )}
+                <div>
+                    <div className='logo-mobile'>
+                        <img src={logoMobile} alt="logo-mii" width={160} />
+                    </div>
+                    {submitted ? (
+                        <ConfirmationMessage setSubmitted={setSubmitted} setCategoria={setCategoria} />
+                    ) : error ? (
+                        <ErrorMessage errorMessage={error} setError={setError} setCategoria={setCategoria} />
+                    ) : (
+                        <>
+                            <h2>Saudações do Made in Itarema App! 📱</h2>
+                            <p>Preencha o formulário para cadastrar seu estabelecimento no maior aplicativo da região.</p>
+                            <div className='main-form'>
+                                <CategorySelector onSelectCategoria={setCategoria} />
+                                {loading ? <LoadingMessage /> : renderForm()}
+                            </div>
+                        </>
+                    )}
+                </div>
+
+                <div className='icons-mobile'>
+                    <ImAndroid className='icon' />
+                    <ImAppleinc className='icon' />
+                    {/* <WiDayHaze className='icon' /> */}
+                    <ImCart className='icon' />
+
+                </div>
             </div>
         </div>
     );
