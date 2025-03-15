@@ -127,7 +127,7 @@ const App = () => {
         <div className="container">
             <div className="image-section">
                 <div className='image-container'>
-                    <img src="../src/assets/img/logo-mii.png" alt="logo-mii" width={100} />
+                    <img src="./assets/img/logo-mii.png" alt="logo-mii" width={100} />
                 </div>
                 <div>
                     <div className="content-container">
@@ -144,7 +144,7 @@ const App = () => {
                             "O jeito mais fácil de explorar nossa cidade. Onde comer, onde ficar, o que fazer? Tá no Made in Itarema!"
                         </p>
                         <div className="testimonial-info">
-                            <img src="../src/assets/img/jp.png" alt="Usuário" className="profile-pic" />
+                            <img src="./assets/img/jp.png" alt="Usuário" className="profile-pic" />
                             <div>
                                 <strong>João Pedro</strong>
                                 <p className='role'>Desenvolvedor do Made in Itarema App</p>
