@@ -19,6 +19,9 @@ import MassagemForm from './components/MassagemForm';
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import LoadingMessage from './components/LoadingMessage';
 
+import logoImage from "./assets/img/logo-mii.png"
+import userImage from "./assets/img/jp.png"
+
 const ConfirmationMessage = ({ setSubmitted, setCategoria }) => (
     <div className="confirmation">
         <h2>Formulário enviado com sucesso! ✅</h2>
@@ -127,7 +130,7 @@ const App = () => {
         <div className="container">
             <div className="image-section">
                 <div className='image-container'>
-                    <img src="./assets/img/logo-mii.png" alt="logo-mii" width={100} />
+                    <img src={logoImage} alt="logo-mii" width={100} />
                 </div>
                 <div>
                     <div className="content-container">
@@ -144,7 +147,7 @@ const App = () => {
                             "O jeito mais fácil de explorar nossa cidade. Onde comer, onde ficar, o que fazer? Tá no Made in Itarema!"
                         </p>
                         <div className="testimonial-info">
-                            <img src="./assets/img/jp.png" alt="Usuário" className="profile-pic" />
+                            <img src={userImage} alt="Usuário" className="profile-pic" />
                             <div>
                                 <strong>João Pedro</strong>
                                 <p className='role'>Desenvolvedor do Made in Itarema App</p>
